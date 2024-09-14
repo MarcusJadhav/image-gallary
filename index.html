@@ -1,21 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Image Gallery</title>
     <style>
-        .gallery-img{
-            height: 350px;
-            width: 500px;
-            object-fit: cover;
-            display: block;
-            margin: 20px auto;
-            border-radius: 15px;
+
+        h2 {
+            text-align: center;
         }
+        
+      .main-container {
+        display: block;
+        margin: 10px auto;
+        width: fit-content;
+        position: relative;
+      }
+
+      .gallery-img {
+        height: 350px;
+        width: 500px;
+        object-fit: cover;
+        display: block;
+        margin: 20px auto;
+        border-radius: 15px;
+      }
+
+      .btn {
+        background-color: #fff;
+        border-radius: 50%;
+        position: absolute;
+        cursor: pointer;
+        height: 50px;
+        top: 150px;
+      }
+
+      .btn-left {
+        left: -30px;
+      }
+
+      .btn-right {
+        right: -30px;
+      }
+      
     </style>
-</head>
-<body>
-    <img src="./images/mustang.jpg" alt="cars images" class="gallery-img"/>
-</body>
+  </head>
+  <body>
+    <h2>Image Gallery 📷</h2>
+    <div class="main-container">
+      <img
+        src="./images/mustang.jpg"
+        alt="cars images"
+        class="gallery-img"
+        id="main-img"
+      />
+      <img
+        src="./images/previous.png"
+        alt="left button"
+        class="btn btn-left"
+        onclick="prev()"
+      />
+      <img
+        src="./images/next.png"
+        alt="right button"
+        class="btn btn-right"
+        onclick="next()"
+      />
+    </div>
+    <script>
+      const imgArr = [
+        "./images/mustang.jpg",
+        "./images/batmobile.jpg",
+        "./images/bmw.jpg",
+        "./images/porche.jpg",
+        "./images/ferrari.jpg",
+      ];
+
+      const currentImg = document.getElementById("main-img");
+      let imgIndex = 0;
+
+      function prev() {
+        imgIndex == 0 ? (imgIndex = imgArr.length - 1) : imgIndex--;
+        currentImg.src = imgArr[imgIndex];
+      }
+
+      function next() {
+        imgIndex == imgArr.length - 1 ? (imgIndex = 0) : imgIndex++;
+        currentImg.src = imgArr[imgIndex];
+      }
+    </script>
+  </body>
 </html>
